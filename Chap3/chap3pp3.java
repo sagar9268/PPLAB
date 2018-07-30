@@ -31,19 +31,23 @@ class Array
 		}
 		System.out.println("");		
 	}
-	public void median()
+	public void noDups()
 	{
-		int n = nElems/2;
-		double med;
-		if(nElems%2 == 0)
+		int i,j,k;
+		for(i=0;i<nElems;i++)
 		{
-			med = (x[n]+x[n-1])/2.0;
+			for(j=i+1;j<nElems;j++)
+			{
+				if(x[i] == x[j])
+				{
+					for(k=j;k<nElems-1;k++)
+					{
+						x[k]=x[k+1];
+					}
+					nElems--;
+				}
+			}
 		}
-		else
-		{
-			med = x[n];
-		}
-		System.out.println(med);
 	}
 }
 class InsertionSort
@@ -62,7 +66,8 @@ class InsertionSort
 		arr.display();
 		arr.insertionSort();
 		arr.display();	
-		arr.median();	
+		arr.noDups();
+		arr.display();
 	}
 }
 
