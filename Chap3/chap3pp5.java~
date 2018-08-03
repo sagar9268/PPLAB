@@ -3,6 +3,8 @@ class Array
 {
 	int x[];
 	int nElems;
+	int nCompare=0;
+	int nCopies=0;
 	Array(int n)
 	{
 		x = new int[n];
@@ -15,10 +17,17 @@ class Array
 		{
 			int temp = x[i];
 			j = i;
-			while(j>0 && x[j-1] >= temp)
-			{
-				x[j] = x[j-1];
-				j--;
+			while(j>0)
+			{	
+				nCompare++;
+				if(x[j-1]>=temp)
+				{
+					nCopies++;
+					x[j] = x[j-1];
+					j--;
+				}
+				else
+					break;
 			}
 			x[j] = temp;
 		}
@@ -29,22 +38,13 @@ class Array
 		{
 			System.out.print(x[i]+" ");
 		}
-		System.out.println("");		
-	}
-	
-	public void noDups()
-	{
-		int k=0;
-		for(int i=0;i<nElems-1;i++)
-		{
-			if(x[i]!=x[i+1])
-			{
-				x[k]=x[i];
-				k++;
-			}
-		}
-		x[k++]=x[nElems-1];
-		nElems = k;
+		System.out.println("");
+		System.out.println("Number of Copies:"+nCopies+"\n");
+		System.out.println("Number of Comparisons:"+nCompare+"\n");
+		
+		
+		
+				
 	}
 }
 class InsertionSort
@@ -60,11 +60,8 @@ class InsertionSort
 		{
 			arr.x[i] = s.nextInt();
 		}
-		arr.display();
 		arr.insertionSort();
 		arr.display();	
-		arr.noDups();
-		arr.display();
 	}
 }
 

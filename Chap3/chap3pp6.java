@@ -17,12 +17,32 @@ class Array
 			j = i;
 			while(j>0 && x[j-1] >= temp)
 			{
+				if(x[j-1]==temp)
+				{
+					temp=-1;
+				}
 				x[j] = x[j-1];
 				j--;
 			}
 			x[j] = temp;
 		}
 	}
+	public void removeDups()
+	{
+		for(int i=0;i<nElems;i++)
+		{
+			if(x[i]== -1)
+			{
+				for(int j=i;j<nElems-1;j++)
+				{
+					x[j] = x[j+1];
+				}
+				nElems--;
+				i--;
+			}
+		}
+	}
+	
 	public void display()
 	{	
 		for(int i=0;i<nElems;i++)
@@ -32,20 +52,6 @@ class Array
 		System.out.println("");		
 	}
 	
-	public void noDups()
-	{
-		int k=0;
-		for(int i=0;i<nElems-1;i++)
-		{
-			if(x[i]!=x[i+1])
-			{
-				x[k]=x[i];
-				k++;
-			}
-		}
-		x[k++]=x[nElems-1];
-		nElems = k;
-	}
 }
 class InsertionSort
 {
@@ -62,9 +68,9 @@ class InsertionSort
 		}
 		arr.display();
 		arr.insertionSort();
-		arr.display();	
-		arr.noDups();
 		arr.display();
+		arr.removeDups();
+		arr.display();	
 	}
 }
 
