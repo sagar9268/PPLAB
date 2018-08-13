@@ -1,4 +1,5 @@
 import java.util.*;
+import java.text.SimpleDateFormat;
 class Person
 {
 	private String firstName,lastName;
@@ -16,7 +17,7 @@ class Person
 	void displayPerson()
 	{
 		System.out.print(" Last Name: "+lastName);
-		System.out.print(" , First Name: "+first);
+		System.out.print(" , First Name: "+firstName);
 		System.out.println(" , Age: "+age);
 	}
 }
@@ -54,8 +55,8 @@ class ArrayOb
 				p[j] = p[j-1];
 				j--;
 			}
+			p[j] = temp;
 		}
-		p[j] = temp;
 	}
 }
 class ObjectSortApp
@@ -83,5 +84,14 @@ class ObjectSortApp
 		arr.insertionSort();
 		System.out.println("After Sort:");
 		arr.display();	
-	}
+		//printing date and time
+		SimpleDateFormat formatter = new SimpleDateFormat("dd/MM/yyyy HH:mm:ss");  
+ 		Date date = new Date();  
+    		System.out.println(formatter.format(date));  
+    		//or
+    		System.out.println(java.time.LocalDateTime.now());
+    		//or  
+    		Date date1=java.util.Calendar.getInstance().getTime();  
+		System.out.println(date1);  
+	} 
 }
