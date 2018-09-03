@@ -1,0 +1,103 @@
+class Link
+{
+	public long dData;
+	public Link next;
+	public Link(long dd)
+	{ 
+		dData = dd;
+	}
+	public void displayLink()
+	{ 
+		System.out.print(dData + " ");
+	}
+}
+class SortedList
+{
+	private Link first,last;
+	public SortedList()
+	{
+		first = null;
+		last = null;
+	}
+	public boolean isEmpty()
+	{
+		return (first==null);
+	}
+	public void insert(long val)
+	{
+		Link newLink = new Link(val);
+		if(isEmpty())
+			first = newLink;
+		else
+			last.next = newLink;
+		last = newLink;
+	}
+	/*public void insert(long key)
+	{
+		Link newLink = new Link(key);
+		Link previous = null;
+		Link current = first;
+		while(current != null && key > current.dData)
+		{
+			previous = current;
+			current = current.next;
+		}
+		if(previous==null)
+			first = newLink;
+		else
+			previous.next = newLink;
+		newLink.next = current;
+	}*/
+	public Link remove()
+	{
+		Link temp = first;
+		Link tempPrev = null;
+		Link previous = null;
+		Link current = first;
+		while(current != null)
+		{
+			if(current.dData < temp.dData)
+			{
+				temp = current;
+				tempPrev = previous;
+			}
+			previous = current;
+			current = current.next;
+		}
+		if(tempPrev == null)
+		{
+			first = first.next;
+		}
+		else
+			tempPrev.next = temp.next;
+		return temp;
+	}
+	public void displayList()
+	{
+		System.out.print("List (first-->last): ");
+		Link current = first;
+		while(current != null)
+		{
+			current.displayLink();
+			current = current.next;
+		}
+		System.out.println("");
+	}
+}
+class SortedListApp
+{
+	public static void main(String[] args)
+	{
+		SortedList theSortedList = new SortedList();
+		theSortedList.insert(20);
+		theSortedList.insert(40);
+		theSortedList.displayList();
+		theSortedList.insert(10);
+		theSortedList.insert(30);
+		theSortedList.insert(50);
+		theSortedList.displayList();
+		theSortedList.remove();
+		theSortedList.remove();
+		theSortedList.displayList();
+	}
+}
