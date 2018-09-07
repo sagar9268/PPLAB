@@ -53,10 +53,15 @@ class CircularList
 		}while(current != firstRef);
 		System.out.println("Value not Found !");
 	}
-	//TODO
-	Link delete()
+	void delete(int c)
 	{
 		Link temp,delCurrent;
+		int count=0;
+		while(count < c)
+		{
+			current = current.next;
+			count++;
+		}
 		delCurrent  = current;
 		temp = current.next;
 		while(current.next != delCurrent)
@@ -64,11 +69,15 @@ class CircularList
 			current = current.next;
 		}
 		current.next = temp;
-		return delCurrent;
+		System.out.println(delCurrent.data);
+		//placing pointer to left person
+		current = current.next;
 	}
 	void displayList()
 	{
 		System.out.println("First->Last:\n");
+		//placing pointer at first position
+		current=current.next;
 		Link firstRef = current;
 		do
 		{
@@ -84,19 +93,20 @@ class LinkListApp
 	{
 		Scanner s = new Scanner(System.in);
 		CircularList theList = new CircularList();
-		System.out.println("Enter the number of values you want to insert:");
+		System.out.println("Enter the number of people in the circle:");
 		int n = s.nextInt();
+		//initializing numbers to nodes
 		for(int i=0;i<n;i++)
 		{
-			System.out.println("Enter val:");
-			int t = s.nextInt();
-			theList.insert(t);
+			theList.insert(i+1);
 		}
+		System.out.println("Enter the number used for counting:");
+		int c = s.nextInt();
 		theList.displayList();
-		System.out.println("Enter the value you want to search:");
-		int srch = s.nextInt();
-		theList.search(srch);
-		theList.delete();
+		for(int i=0;i<n-1;i++)
+		{
+			theList.delete(c);
+		}
 		theList.displayList();
 	}
 }

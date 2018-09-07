@@ -39,11 +39,10 @@ class CircularList
 		}
 		current = newLink;
 	}
-	//TODO 
 	void search(int val)
 	{
 		Link firstRef = current;
-		while(current.next != firstRef)
+		do
 		{
 			if(current.data == val)
 			{
@@ -51,26 +50,30 @@ class CircularList
 				return;
 			}
 			current = current.next;
-		}
+		}while(current != firstRef);
 		System.out.println("Value not Found !");
 	}
 	Link delete()
 	{
-		Link temp;
-		temp = current;
-		current = current.next;
-		return temp;
+		Link temp,delCurrent;
+		delCurrent  = current;
+		temp = current.next;
+		while(current.next != delCurrent)
+		{
+			current = current.next;
+		}
+		current.next = temp;
+		return delCurrent;
 	}
-	//TODO 
 	void displayList()
 	{
 		System.out.println("First->Last:\n");
 		Link firstRef = current;
-		while(current.next != firstRef)
+		do
 		{
 			current.displayLink();
 			current = current.next;
-		}
+		}while(current != firstRef);
 		System.out.println("");
 	}
 }
@@ -89,10 +92,10 @@ class LinkListApp
 			theList.insert(t);
 		}
 		theList.displayList();
-		theList.search(10);
-		theList.search(15);
+		System.out.println("Enter the value you want to search:");
+		int srch = s.nextInt();
+		theList.search(srch);
 		theList.delete();
-		theList.displayList();
 		theList.displayList();
 	}
 }
