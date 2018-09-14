@@ -21,12 +21,12 @@ class DoublyLinkedList
 {
 	private Link first;
 	private Link last;
-	public DoublyLinkedList()
+	public DoublyLinkedList(int r,int c)
 	{
 		first = null;
-		last = null;
+		init(r,c);
 	}
-	public DoublyLinkedList(int r,int c)
+	public void init(int r,int c)
 	{
 		if(isEmpty())
 		{
@@ -41,13 +41,17 @@ class DoublyLinkedList
 		{
 			for(int cc=0;cc<c;cc++)
 			{
-				Link newLink = new Link();
-				current.right = newLink;
+				Link newLinkRight = new Link();
+				current.right = newLinkRight;
+				Link newLinkDown = new Link();
+				current.down = newLinkDown;
+				if(cc==0)
+					currentDown = newLinkDown;
 				current = current.right;
 			}
 			current = currentDown;
 			Link newLink3 = new Link();
-			currentDown.down = newLink3;
+			current.down = newLink3;
 			currentDown = newLink3;
 		}
 	}
@@ -55,35 +59,11 @@ class DoublyLinkedList
 	{
 		return first==null;
 	}
-	/*
-	public void insertFirst(long dd)
-	{
-		Link newLink = new Link(dd);
-		if( isEmpty() )
-			last = newLink;
-		else
-			first.previous = newLink;
-		newLink.next = first;
-		first = newLink;
-	}
-	public void insertLast(long dd)
-	{
-		Link newLink = new Link(dd);
-		if( isEmpty() )
-			first = newLink;
-		else
-		{
-			last.next = newLink;
-			newLink.previous = last;
-		}
-		last = newLink;
-	}
-	*/
 	public void insert(long dd,int r,int c)
 	{
 		Link current = first;
 		Link newLink = new Link(dd);
-		int rc=0,cc=0;
+		int rc=1,cc=1;
 		while(rc<r)
 		{
 			current = current.down;
@@ -104,11 +84,12 @@ class DoublyLinkedList
 		int rc=0,cc=0;
 		while(rc<r)
 		{
+			cc=0;
 			while(cc<c)
 			{
-				current = current.right;
 				current.displayLink();
-				System.out.println(" ");
+				current = current.right;
+				
 				cc++;
 			}
 			System.out.println("");
@@ -128,6 +109,7 @@ class DoublyLinkedApp
 		int r = s.nextInt();
 		int c = s.nextInt();
 		DoublyLinkedList theList = new DoublyLinkedList(r,c);
+		theList.displayMatrix(r,c);
 		char ch;
 		do
 		{
@@ -135,7 +117,7 @@ class DoublyLinkedApp
 			int rp = s.nextInt();
 			int cp = s.nextInt();
 			System.out.println("Enter the value:");
-			int val = s.nextInt();
+			long val = s.nextLong();
 			theList.insert(val,rp,cp);
 			System.out.println("Do you want to insert more? (y/n) :");
 			ch = s.next().charAt(0);
