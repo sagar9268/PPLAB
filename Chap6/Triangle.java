@@ -1,0 +1,19 @@
+import java.util.*;
+class triangleApp
+{
+	public static void main(String[] args)
+	{
+		Scanner s = new Scanner(System.in);
+		System.out.println("Enter a number:");
+		int n = s.nextInt();
+		int ans = triangle(n);
+		System.out.println("Triangle:"+ans);
+	}
+	public static int triangle(int n)
+	{
+		if(n==1)
+			return 1;
+		else
+			return(n+triangle(n-1));
+	}
+}
