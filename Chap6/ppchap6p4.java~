@@ -1,0 +1,55 @@
+import java.util.Scanner;
+
+class Knapsack1
+{
+	 static int max(int a, int b) 
+	  { return (a > b)? a : b; }
+     
+     
+     static int knapSack(int W, int wt[], int val[], int n)
+     {
+        
+    if (n == 0 || W == 0)
+        return 0;
+      
+   
+    if (wt[n-1] > W)
+       return knapSack(W, wt, val, n-1);
+      
+    
+    else return max( val[n-1] + knapSack(W-wt[n-1], wt, val, n-1),
+                     knapSack(W, wt, val, n-1)
+                      );
+      }
+}
+
+ class KnapsackApp
+{
+	public static void main(String args[])
+	{
+		Scanner sc = new Scanner(System.in);
+		Knapsack1 ob = new Knapsack1();
+		int val[],wt[],W;
+		
+		System.out.println("Enter the value/weight size");
+		int size = sc.nextInt();
+		val = new int[size];
+		
+		wt = new int[size];
+		
+		System.out.println("Enter the target weight");
+		W = sc.nextInt();
+		
+		System.out.println("Enter the values and weight");
+		
+		for(int i=0;i<size;i++)
+		{
+			System.out.print("value: ");
+			val[i] = sc.nextInt();
+			System.out.print("   weight: ");
+			wt[i] = sc.nextInt();
+			
+			System.out.println(ob.knapSack(W,wt,val,size));
+		}
+	}
+}
