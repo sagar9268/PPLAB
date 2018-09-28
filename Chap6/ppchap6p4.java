@@ -19,18 +19,18 @@ class KnapsackApp
 		Scanner sc = new Scanner(System.in);
 		Knapsack ob = new Knapsack();
 		int val[],wt[],W;
-		System.out.println("Enter the value/weight size");
+		System.out.println("Enter the value/weight size:");
 		int size = sc.nextInt();
 		val = new int[size];
 		wt = new int[size];
-		System.out.println("Enter the target weight");
+		System.out.println("Enter the target weight:");
 		W = sc.nextInt();
-		System.out.println("Enter the values and weight");
+		System.out.println("Enter the values and weight:");
 		for(int i=0;i<size;i++)
 		{
-			System.out.print("value: ");
+			System.out.print("Value: ");
 			val[i] = sc.nextInt();
-			System.out.print("   weight: ");
+			System.out.print("   Weight: ");
 			wt[i] = sc.nextInt();
 			System.out.println(ob.knapSack(W,wt,val,size));
 		}
