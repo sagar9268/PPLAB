@@ -132,6 +132,14 @@ class TreeApp
 		}while(ch=='y'||ch=='Y');
 		System.out.println("Enter a key value to find:");
 		int k = s.nextInt();
-		tree.find(k);
-	}
+		//TODO
+		Node found = tree.find(k);
+		if(found != null)
+		{
+			System.out.print("Found: ");
+		}
+		else
+			System.out.print("Could not find: ");
+		System.out.print(k + "\n");
+		}
 }
